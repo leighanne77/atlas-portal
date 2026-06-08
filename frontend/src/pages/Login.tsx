@@ -1,0 +1,79 @@
+import { auth } from "../api/client";
+import { ColorModeToggle } from "../components/ColorModeToggle";
+
+/**
+ * Login page — first thing every unauthenticated visitor sees.
+ * Triggers OAuth via explicit user click (NOT useEffect — React 18
+ * StrictMode would fire it twice, per Day 4 plan Pitfall 2).
+ */
+export default function Login() {
+  return (
+    <div className="flex min-h-screen flex-col bg-white dark:bg-brand-slate-900">
+      <header className="flex items-center justify-end p-3">
+        <ColorModeToggle />
+      </header>
+
+      <main className="flex flex-1 flex-col items-center justify-center p-6">
+        <div className="w-full max-w-lg text-center">
+          <h1 className="mt-10 font-display text-4xl font-bold tracking-wide text-brand-slate-900">
+            Atlas
+          </h1>
+          <p className="mt-2 italic text-brand-slate-600">
+            Voice-enabled team contact tracker
+          </p>
+
+          <p className="mx-auto mt-8 max-w-md text-sm leading-relaxed">
+            <span className="font-bold text-brand-red-600 dark:text-brand-red-400">
+              Team Access Only:
+            </span>{" "}
+            Contacts, deal flow, and LP relationships — built for the speed of
+            industrial mobilization.
+          </p>
+
+          <button
+            type="button"
+            onClick={() => auth.startLogin()}
+            className="mt-10 inline-flex h-12 items-center justify-center gap-3 rounded bg-brand-slate-600 px-8 text-sm font-bold uppercase tracking-wide text-white hover:bg-brand-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-amber-500 dark:bg-brand-slate-50 dark:text-brand-slate-900 dark:hover:bg-brand-slate-50/85"
+          >
+            <GoogleG />
+            Sign in with Google
+          </button>
+
+          <p className="mt-4 text-xs italic opacity-60">
+            Sign in with your @example.com Google account.
+          </p>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+/** Google "G" mark — official colors, kept as inline SVG. */
+function GoogleG() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      aria-hidden="true"
+      className="shrink-0"
+    >
+      <path
+        fill="#4285F4"
+        d="M17.64 9.2c0-.64-.06-1.25-.17-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.79 2.71v2.26h2.9c1.7-1.57 2.69-3.88 2.69-6.61z"
+      />
+      <path
+        fill="#34A853"
+        d="M9 18c2.43 0 4.47-.81 5.96-2.18l-2.9-2.26c-.8.54-1.83.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.96v2.33A8.997 8.997 0 0 0 9 18z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M3.95 10.7A5.41 5.41 0 0 1 3.66 9c0-.59.1-1.16.29-1.7V4.97H.96A8.997 8.997 0 0 0 0 9c0 1.45.35 2.83.96 4.03l2.99-2.33z"
+      />
+      <path
+        fill="#EA4335"
+        d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A8.997 8.997 0 0 0 .96 4.97L3.95 7.3C4.66 5.17 6.65 3.58 9 3.58z"
+      />
+    </svg>
+  );
+}
