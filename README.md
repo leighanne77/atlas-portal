@@ -1,4 +1,4 @@
-# Atlas — voice-enabled team contact tracker
+# Atlas — voice-enabled team knowledge base
 
 A small full-stack app demonstrating end-to-end engineering across a
 modern AI + cloud stack:
